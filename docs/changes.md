@@ -5,6 +5,20 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.3.0] — 04/07/2026
+
+### Added
+- Ambiente local Airflow inicializado via `astro dev init`
+- `Dockerfile`, `airflow_settings.yaml`, `packages.txt`, `.dockerignore`
+- DAG de exemplo (`dags/exampledag.py`) e teste de integridade (`tests/dags/test_dag_example.py`)
+- `.astro/` com configuração interna do Astro CLI
+- Ambiente validado com `astro dev start` (Airflow UI em http://ai-data-pipeline-rag.localhost:6563)
+
+### Updated
+- `docs/roadmap.md` — Fase 0: `astro dev init` e `.gitignore` marcados como concluídos
+
+---
+
 ## [0.2.0] — 04/07/2026
 
 ### Added
