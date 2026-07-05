@@ -5,6 +5,24 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.5.0] — 05/07/2026
+
+### Added
+- `src/ingestion/dbt_docs_ingestion.py` — script de ingestão via API do GitHub
+  - Baixa arquivos `.md` de seções configuradas (`data_modeling`, `testing`)
+  - Idempotente: re-executar sobrescreve sem duplicar
+  - Rate limit handling com exceção customizada `RateLimitExceeded`
+  - Token lido de `.env` via `os.getenv("GITHUB_TOKEN")`
+- `data/raw/dbt_docs/` — arquivos `.md` baixados das seções `data_modeling` e `testing` (~60 arquivos cada)
+- `data/` adicionado ao `.gitignore` (dados brutos não vão pro git)
+- `uv.lock` gerado após instalação de `requests` e `logging`
+
+### Updated
+- `pyproject.toml` — dependências: `requests>=2.34.2`, `logging>=0.4.9.6`
+- `docs/roadmap.md` — Fase 1: ingestão e idempotência marcadas como concluídas
+
+---
+
 ## [0.4.0] — 04/07/2026
 
 ### Added

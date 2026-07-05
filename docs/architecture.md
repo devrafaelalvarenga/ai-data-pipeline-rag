@@ -82,19 +82,25 @@ extract → chunk → embed → quality_check → load_to_vectordb
 ```
 ai-data-pipeline-rag/
 ├── dags/                    # DAGs do Airflow
+├── data/                    # dados brutos e processados (no .gitignore)
+│   └── raw/
+│       └── dbt_docs/        # arquivos .md baixados da API do GitHub
+│           ├── data_modeling/
+│           └── testing/
 ├── docs/                    # documentação do projeto
 │   └── integration/         # uma subpasta por integração externa
 ├── notebooks/               # experimentação (sem exigência de teste formal)
 ├── src/
 │   ├── ingestion/           # extração das docs do GitHub
+│   │   └── dbt_docs_ingestion.py
 │   ├── chunking/            # estratégia de divisão do texto
 │   ├── embeddings/          # geração de embeddings
 │   ├── quality_checks/      # checks de qualidade de dados
 │   └── retrieval/           # busca no Chroma + resposta do LLM
 ├── tests/
 ├── .env                     # credenciais (nunca commitar preenchido)
-├── README.md
-└── requirements.txt
+├── pyproject.toml           # dependências e config de ferramentas (uv)
+└── README.md
 ```
 
 ---

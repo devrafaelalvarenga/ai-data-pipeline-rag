@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "RAG pipeline for dbt documentation with data quality checks"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "logging>=0.4.9.6",
+    "requests>=2.34.2",
+]
 
 [tool.ruff]
 line-length = 88
