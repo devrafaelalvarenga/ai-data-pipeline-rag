@@ -5,6 +5,18 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.4.0] — 04/07/2026
+
+### Added
+- `uv` instalado (v0.11.26) via instalador oficial
+- `pyproject.toml` com Python 3.12, configuração de ruff e pytest
+- `.env` com estrutura completa de variáveis comentadas (GitHub, Embeddings, LLM, Chroma, Airflow)
+
+### Updated
+- `docs/roadmap.md` — Fase 0 concluída integralmente
+
+---
+
 ## [0.3.0] — 04/07/2026
 
 ### Added

@@ -13,8 +13,8 @@ Tarefas organizadas por fase do projeto. Atualizar status sempre que uma etapa f
 | ✅ | Criar `docs/` com `architecture.md`, `roadmap.md`, `changes.md` |
 | ✅ | Criar `docs/CLAUDE.md` como ponto de entrada da IA |
 | ✅ | Inicializar ambiente com Astro CLI (`astro dev init`) |
-| ⬜ | Configurar `uv` e criar `pyproject.toml` |
-| ⬜ | Criar `.env` com estrutura de variáveis comentadas (valores em branco) |
+| ✅ | Configurar `uv` e criar `pyproject.toml` |
+| ✅ | Criar `.env` com estrutura de variáveis comentadas (valores em branco) |
 | ✅ | Garantir que `.env` preenchido está no `.gitignore` |
 
 ---

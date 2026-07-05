@@ -12,8 +12,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | Arquivo | Descrição | Atualizado em |
 |---|---|---|
 | `docs/architecture.md` | Stack, fluxo de dados e detalhamento de cada camada | 04/07/2026 às 00h00 BRT |
-| `docs/roadmap.md` | Tarefas pendentes, em andamento e concluídas | 04/07/2026 às 01h00 BRT |
-| `docs/changes.md` | Changelog de todas as alterações relevantes | 04/07/2026 às 01h00 BRT |
+| `docs/roadmap.md` | Tarefas pendentes, em andamento e concluídas | 04/07/2026 às 02h00 BRT |
+| `docs/changes.md` | Changelog de todas as alterações relevantes | 04/07/2026 às 02h00 BRT |
 | `docs/integration/README.md` | Índice de todas as integrações externas documentadas | 04/07/2026 às 00h00 BRT |
 
 > Regra: toda vez que um arquivo acima for alterado, atualizar imediatamente o campo "Atualizado em" com a data e hora no fuso BRT (ex: `20/03/2025 às 14h32 BRT`). Ao final de cada sessão, checar se algum arquivo do índice foi modificado e confirmar que o timestamp reflete isso.
