@@ -5,6 +5,22 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.6.0] — 05/07/2026
+
+### Added
+- `tests/ingestion/test_dbt_docs_ingestion.py` — 17 testes unitários cobrindo:
+  - `_request_headers`: com e sem token
+  - `list_markdown_files`: caminho feliz, filtro de extensão/tipo, rate limit, erros HTTP
+  - `download_file`: criação de diretório, escrita de arquivo, idempotência, erro HTTP
+  - `ingest_section`: orquestração, normalização de nome de pasta, seção vazia
+  - `run_ingestion`: chamada por seção, estrutura do retorno
+- pytest adicionado como dependência de desenvolvimento
+
+### Updated
+- `docs/roadmap.md` — Fase 1 concluída integralmente (todas as tarefas ✅)
+
+---
+
 ## [0.5.0] — 05/07/2026
 
 ### Added

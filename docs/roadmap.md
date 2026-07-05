@@ -25,7 +25,7 @@ Tarefas organizadas por fase do projeto. Atualizar status sempre que uma etapa f
 |---|---|
 | ✅ | Implementar `src/ingestion/` — pull de Markdown da API do GitHub |
 | ✅ | Garantir idempotência (não reprocessar docs que não mudaram) |
-| ⬜ | Cobrir com testes unitários (`tests/`) |
+| ✅ | Cobrir com testes unitários (`tests/`) |
 
 ---
 
