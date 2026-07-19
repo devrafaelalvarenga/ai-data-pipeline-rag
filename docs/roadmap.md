@@ -33,10 +33,10 @@ Tarefas organizadas por fase do projeto. Atualizar status sempre que uma etapa f
 
 | Status | Tarefa |
 |---|---|
-| ⬜ | Definir e documentar estratégia de chunking (tamanho, overlap) |
-| ⬜ | Implementar separação de texto prose vs. blocos de código |
-| ⬜ | Implementar `src/chunking/` |
-| ⬜ | Cobrir com testes unitários |
+| ✅ | Definir e documentar estratégia de chunking (tamanho, overlap) |
+| ✅ | Implementar separação de texto prose vs. blocos de código |
+| ✅ | Implementar `src/chunking/` |
+| ✅ | Cobrir com testes unitários |
 
 ---
 

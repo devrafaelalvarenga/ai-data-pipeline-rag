@@ -94,6 +94,7 @@ ai-data-pipeline-rag/
 │   ├── ingestion/           # extração das docs do GitHub
 │   │   └── dbt_docs_ingestion.py
 │   ├── chunking/            # estratégia de divisão do texto
+│   │   └── markdown_chunker.py
 │   ├── embeddings/          # geração de embeddings
 │   ├── quality_checks/      # checks de qualidade de dados
 │   └── retrieval/           # busca no Chroma + resposta do LLM
@@ -118,3 +119,17 @@ Markdown é mais limpo e estruturado. O scraping de HTML da doc renderizada intr
 
 ### Chunking: prose vs. código separados
 Blocos de código SQL/Jinja têm semântica diferente de texto corrido. Misturar os dois no mesmo chunk degrada a qualidade do embedding. A estratégia adotada trata cada tipo separadamente — decisão documentada e justificada no próprio módulo `src/chunking/`.
+
+**Implementação (`src/chunking/markdown_chunker.py`):**
+
+| Parâmetro | Valor | Justificativa |
+|---|---|---|
+| `MAX_PROSE_CHARS` | 1000 | Chunk pequeno o bastante para embedding focado, grande o bastante para manter contexto de um parágrafo/seção |
+| `PROSE_OVERLAP_CHARS` | 150 (~15%) | Evita perder contexto quando uma ideia é cortada na fronteira entre chunks |
+| `MAX_CODE_CHARS` | 1000 | Mesma ordem de grandeza da prose; a maioria dos exemplos de código do dbt docs cabe inteira em um único chunk |
+| `CODE_OVERLAP_LINES` | 2 | Código é dividido por linha, nunca no meio de uma linha — overlap em linhas (não caracteres) preserva sintaxe |
+
+- **Tamanho em caracteres, não tokens**: o modelo de embeddings ainda não foi escolhido (Fase 3). Caracteres são uma proxy simples e determinística; a conversão para um budget de tokens específico do modelo fica para quando essa decisão for tomada.
+- **Fronteira por parágrafo**: `chunk_prose` agrupa parágrafos (separados por linha em branco) até o limite, em vez de cortar em posição fixa — preserva unidades semânticas sempre que possível. Um parágrafo isolado maior que o limite é dividido via sliding window (fallback, não o caminho comum no corpus).
+- **Frontmatter**: `title`/`description`/`id` do YAML de cada doc do dbt são extraídos e viram metadata do chunk (`doc_title`), não fazem parte do texto chunkado — não têm valor semântico para embedding, mas ajudam em filtros de retrieval.
+- **Validado contra o corpus real**: 2850 chunks gerados a partir de `data/raw/dbt_docs/` (1874 prose, 976 código), 0 chunks vazios, nenhum excedendo o tamanho máximo configurado.

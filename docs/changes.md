@@ -5,6 +5,28 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
 ---
 
+## [0.7.0] — 19/07/2026
+
+### Added
+- `src/chunking/markdown_chunker.py` — chunking da documentação baixada em Fase 1:
+  - `parse_frontmatter`: extrai `title`/`description`/`id` do frontmatter YAML
+  - `split_prose_and_code`: separa prose de blocos de código (```` ``` ````) antes de fatiar, para não misturar semânticas diferentes no mesmo chunk
+  - `chunk_prose`: agrupa parágrafos até `MAX_PROSE_CHARS` (1000 chars), com overlap de `PROSE_OVERLAP_CHARS` (150 chars); parágrafo maior que o limite é hard-split via sliding window
+  - `chunk_code`: mantém bloco de código inteiro até `MAX_CODE_CHARS` (1000 chars); acima disso, divide por linha (nunca no meio de uma linha), com overlap de `CODE_OVERLAP_LINES` (2 linhas)
+  - `chunk_document` / `chunk_all`: orquestram o chunking por arquivo e por diretório, atribuindo metadata (`source_file`, `doc_title`, `chunk_type`, `chunk_index`, `language`)
+- `tests/chunking/test_markdown_chunker.py` — 20 testes unitários cobrindo frontmatter, separação prose/código, limites de tamanho, overlap e integração via `chunk_document`/`chunk_all`
+- Validação manual contra o corpus real (`data/raw/dbt_docs/`): 2850 chunks gerados, 0 vazios, nenhum excedendo o tamanho máximo configurado
+
+### Updated
+- `docs/architecture.md` — seção de decisões de chunking detalhada com os parâmetros e a justificativa de medir tamanho em caracteres (não tokens, já que o modelo de embeddings ainda não foi escolhido)
+- `docs/roadmap.md` — Fase 2 concluída integralmente (todas as tarefas ✅)
+
+### Decisões técnicas
+- Tamanho de chunk medido em caracteres, não tokens: o modelo de embeddings é decisão da Fase 3; caracteres são uma proxy simples e determinística até lá. Reavaliar para um budget de tokens quando o modelo for escolhido.
+- Prose e código nunca compartilham chunk — mistura degrada a qualidade do embedding (ver `docs/architecture.md`).
+
+---
+
 ## [0.6.0] — 05/07/2026
 
 ### Added
